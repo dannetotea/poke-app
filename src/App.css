@@ -4,3 +4,23 @@ body {
   background-attachment: fixed;
   background-position: center;
 }
+
+.pokeCard {
+  border: 1px solid black;
+  margin: 20px;
+  width: 312px;
+  height: 100px;
+  display: flex;
+  background-color: white;
+}
+
+.pokeList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.alignCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
