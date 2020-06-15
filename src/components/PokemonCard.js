@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const PokemonCard = (props) => {
   const pokemon = props.pokemon;
   const [pokemonName, setPokemonName] = useState("");
-  const [pokemonLogo, setPokemonLogo] = useState("");
+  const [pokemonImages, setPokemonImages] = useState({});
 
   useEffect(() => {
     fetchPokemon();
@@ -15,19 +16,23 @@ const PokemonCard = (props) => {
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
       .then((response) => {
         setPokemonName(response.data.name);
-        setPokemonLogo(response.data.sprites.front_default);
+        setPokemonImages(response.data.sprites);
       })
       .catch((error) => {
         console.log(error);
       });
   };
   return (
-    <div className="pokeCard">
-      <img src={pokemonLogo} />
-      <div className="alignCenter">
-        <p>{pokemonName}</p>
-      </div>
-    </div>
+    <>
+      <Link to={`/details/${pokemonName}`}>
+        <div className="pokeCard">
+          <img src={pokemonImages.front_default} />
+          <div className="alignCenter">
+            <h3>{pokemonName}</h3>
+          </div>
+        </div>
+      </Link>
+    </>
   );
 };
 
