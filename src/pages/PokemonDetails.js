@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const PokemonDetails = (props) => {
+  let history = useHistory();
   const [pokemonDetails, setPokemonDetails] = useState("");
-  const [pokemonName, setpokemonName] = useState("");
 
   useEffect(() => {
-    setpokemonName(props.location.pathname && props.location.pathname.slice(9));
-    if (pokemonName) {
-      fetchPokemonDetails();
-    }
+    const pokemonName = history.location.pathname.slice(1);
+    fetchPokemonDetails(pokemonName);
   }, []);
 
-  const fetchPokemonDetails = () => {
+  const fetchPokemonDetails = (pokemonName) => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
       .then((response) => {

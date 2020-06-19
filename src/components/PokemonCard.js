@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const PokemonCard = (props) => {
   const pokemon = props.pokemon;
+  let history = useHistory();
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonImages, setPokemonImages] = useState({});
 
@@ -23,16 +24,17 @@ const PokemonCard = (props) => {
       });
   };
   return (
-    <>
-      <Link to={`/details/${pokemonName}`}>
-        <div className="pokeCard">
-          <img src={pokemonImages.front_default} />
-          <div className="alignCenter">
-            <h3>{pokemonName}</h3>
-          </div>
-        </div>
-      </Link>
-    </>
+    <div
+      className="pokeCard"
+      onClick={() => {
+        history.push(`/${pokemonName}`);
+      }}
+    >
+      <img src={pokemonImages.front_default} />
+      <div className="alignCenter">
+        <h3>{pokemonName}</h3>
+      </div>
+    </div>
   );
 };
 
