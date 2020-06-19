@@ -6,10 +6,10 @@ body {
 }
 
 .pokeCard {
+  flex: 1 0 21%;
   border: 1px solid black;
-  margin: 20px;
-  width: 312px;
-  height: 100px;
+  margin: 10px;
+  min-width: 213px;
   display: flex;
   background-color: white;
 }
