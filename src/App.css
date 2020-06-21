@@ -8,10 +8,12 @@ body {
 .pokeCard {
   flex: 1 0 21%;
   border: 1px solid black;
+  border-radius: 5px;
   margin: 10px;
   min-width: 213px;
   display: flex;
   background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .pokeList {
@@ -22,4 +24,80 @@ body {
 .alignCenter {
   display: flex;
   align-items: center;
+}
+
+.displayImg {
+  display: flex;
+  justify-content: center;
+}
+
+.pokeDetails {
+  display: flex;
+  justify-content: center;
+
+}
+
+.pokeDetails > div {
+  padding: 10px 20px 10px 20px;
+  background-color: white;
+  width: 60%;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pokeDetailsTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.pokeMeasurements {
+  display: flex;
+  margin: 0 100px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: darkkhaki;
+}
+
+.pokeHeight {
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid;
+  width: 50%;
+}
+
+.pokeWeight {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.pokeTypes {
+  margin-top: 20px;
+  padding: 8px 10px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 5px;
+  color: white;
+  background-color: green;
+}
+
+.displayBadge {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.search{
+  width: 500px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.displaySearch{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
 }

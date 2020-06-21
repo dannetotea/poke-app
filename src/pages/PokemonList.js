@@ -4,6 +4,7 @@ import PokemonCard from "../components/PokemonCard";
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
+  const [filteredPokemonList, setFilteredPokemonList] = useState([]);
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,13 +19,35 @@ const PokemonList = () => {
         console.log(error);
       });
   };
+  const handleInputChange = (event) => {
+    const query = event.target.value;
+    const filteredPokemonList = pokemonList.filter((pokemon) =>
+      pokemon.name.includes(query)
+    );
+    setFilteredPokemonList(filteredPokemonList);
+  };
 
   return (
-    <div className="pokeList">
-      {pokemonList.map((pokemon) => {
-        return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-      })}
-    </div>
+    <>
+      <div className="displaySearch">
+        <input
+          className="search"
+          placeholder="Search"
+          onChange={(event) => {
+            handleInputChange(event);
+          }}
+        />
+      </div>
+      <div className="pokeList">
+        {filteredPokemonList.length
+          ? filteredPokemonList.map((pokemon) => {
+              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+            })
+          : pokemonList.map((pokemon) => {
+              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+            })}
+      </div>
+    </>
   );
 };
 

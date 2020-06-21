@@ -22,7 +22,39 @@ const PokemonDetails = (props) => {
       });
   };
 
-  return <div>{console.log(pokemonDetails)}</div>;
+  return (
+    <div className="pokeDetails">
+      <div>
+        <div className="pokeDetailsTitle">
+          <h1>
+            {pokemonDetails.name &&
+              pokemonDetails.name.charAt(0).toUpperCase() +
+                pokemonDetails.name.slice(1)}
+          </h1>
+        </div>
+        {pokemonDetails.sprites && (
+          <div className="displayImg">
+            <img src={pokemonDetails.sprites.back_default} />
+            <img src={pokemonDetails.sprites.back_shiny} />
+            <img src={pokemonDetails.sprites.front_default} />
+            <img src={pokemonDetails.sprites.front_shiny} />
+          </div>
+        )}
+        <div className="pokeMeasurements">
+          <div className="pokeHeight">Height: {pokemonDetails.height}</div>
+          <div className="pokeWeight">Weight: {pokemonDetails.weight}</div>
+        </div>
+        <div className="displayBadge">
+          <div>
+            {pokemonDetails.types &&
+              pokemonDetails.types.map((type) => {
+                return <div className="pokeTypes">{type.type.name}</div>;
+              })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default PokemonDetails;
