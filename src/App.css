@@ -1,38 +1,103 @@
-.App {
-  text-align: center;
+body {
+  background-image: url('assets/img/poke-image.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.pokeCard {
+  flex: 1 0 21%;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px;
+  min-width: 213px;
   display: flex;
-  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pokeList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.alignCenter {
+  display: flex;
   align-items: center;
+}
+
+.displayImg {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.pokeDetails {
+  display: flex;
+  justify-content: center;
+
+}
+
+.pokeDetails > div {
+  padding: 10px 20px 10px 20px;
+  background-color: white;
+  width: 60%;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pokeDetailsTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.pokeMeasurements {
+  display: flex;
+  margin: 0 100px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: darkkhaki;
+}
+
+.pokeHeight {
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid;
+  width: 50%;
+}
+
+.pokeWeight {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.pokeTypes {
+  margin-top: 20px;
+  padding: 8px 10px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 5px;
   color: white;
+  background-color: green;
 }
 
-.App-link {
-  color: #61dafb;
+.displayBadge {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search{
+  width: 500px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.displaySearch{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
 }
