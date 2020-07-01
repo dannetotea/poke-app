@@ -28,10 +28,13 @@ const PokemonDetails = (props) => {
         </div>
         {pokemonDetails.sprites && (
           <div className="displayImg">
-            <img src={pokemonDetails.sprites.back_default} alt="back image" />
-            <img src={pokemonDetails.sprites.back_shiny} alt="back image" />
-            <img src={pokemonDetails.sprites.front_default} alt="front image" />
-            <img src={pokemonDetails.sprites.front_shiny} alt="front image" />
+            <img src={pokemonDetails.sprites.back_default} alt="back_image1" />
+            <img src={pokemonDetails.sprites.back_shiny} alt="back_image2" />
+            <img
+              src={pokemonDetails.sprites.front_default}
+              alt="front_image1"
+            />
+            <img src={pokemonDetails.sprites.front_shiny} alt="front_image2" />
           </div>
         )}
         <div className="pokeMeasurements">
