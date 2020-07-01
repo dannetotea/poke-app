@@ -1,16 +1,10 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import PokemonList from "./pages/PokemonList";
 import PokemonDetails from "./pages/PokemonDetails";
 
 function App() {
-  const location = useLocation();
   return (
     <Router>
       <Switch>
@@ -18,7 +12,7 @@ function App() {
           <PokemonList />
         </Route>
         <Route path="/:name">
-          <PokemonDetails location={location} />
+          <PokemonDetails />
         </Route>
       </Switch>
     </Router>
