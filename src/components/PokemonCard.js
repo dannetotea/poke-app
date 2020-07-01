@@ -3,8 +3,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const PokemonCard = (props) => {
-  const pokemon = props.pokemon;
-  let history = useHistory();
+  const { pokemon } = props;
+  const history = useHistory();
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonImages, setPokemonImages] = useState({});
 
@@ -12,17 +12,18 @@ const PokemonCard = (props) => {
     fetchPokemon();
   }, []);
 
-  const fetchPokemon = () => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-      .then((response) => {
-        setPokemonName(response.data.name);
-        setPokemonImages(response.data.sprites);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const fetchPokemon = async () => {
+    try {
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
+      );
+      setPokemonName(response.data.name);
+      setPokemonImages(response.data.sprites);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <div
       className="pokeCard"
@@ -30,7 +31,7 @@ const PokemonCard = (props) => {
         history.push(`/${pokemonName}`);
       }}
     >
-      <img src={pokemonImages.front_default} />
+      <img src={pokemonImages.front_default} alt="Frond default" />
       <div className="alignCenter">
         <h3>{pokemonName}</h3>
       </div>

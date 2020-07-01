@@ -4,28 +4,27 @@ import PokemonCard from "../components/PokemonCard";
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
-  const [filteredPokemonList, setFilteredPokemonList] = useState([]);
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchData = () => {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon")
-      .then((response) => {
-        setPokemonList(response.data.results);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
+      setPokemonList(response.data.results);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   const handleInputChange = (event) => {
-    const query = event.target.value;
-    const filteredPokemonList = pokemonList.filter((pokemon) =>
-      pokemon.name.includes(query)
-    );
-    setFilteredPokemonList(filteredPokemonList);
+    setSearch(event.target.value);
   };
+  const filteredPokemonList = pokemonList.filter((pokemon) => {
+    return pokemon.name.includes(search.toLowerCase());
+  });
 
   return (
     <>
@@ -39,13 +38,9 @@ const PokemonList = () => {
         />
       </div>
       <div className="pokeList">
-        {filteredPokemonList.length
-          ? filteredPokemonList.map((pokemon) => {
-              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-            })
-          : pokemonList.map((pokemon) => {
-              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-            })}
+        {filteredPokemonList.map((pokemon) => {
+          return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+        })}
       </div>
     </>
   );

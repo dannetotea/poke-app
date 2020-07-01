@@ -1,43 +1,37 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const PokemonDetails = (props) => {
-  let history = useHistory();
   const [pokemonDetails, setPokemonDetails] = useState("");
-
+  let { name } = useParams();
   useEffect(() => {
-    const pokemonName = history.location.pathname.slice(1);
-    fetchPokemonDetails(pokemonName);
-  }, []);
+    fetchPokemonDetails();
+  }, [name]);
 
-  const fetchPokemonDetails = (pokemonName) => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-      .then((response) => {
-        setPokemonDetails(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const fetchPokemonDetails = async () => {
+    try {
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${name}`
+      );
+      setPokemonDetails(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="pokeDetails">
       <div>
         <div className="pokeDetailsTitle">
-          <h1>
-            {pokemonDetails.name &&
-              pokemonDetails.name.charAt(0).toUpperCase() +
-                pokemonDetails.name.slice(1)}
-          </h1>
+          <h1 className="textCapitalize">{pokemonDetails.name}</h1>
         </div>
         {pokemonDetails.sprites && (
           <div className="displayImg">
-            <img src={pokemonDetails.sprites.back_default} />
-            <img src={pokemonDetails.sprites.back_shiny} />
-            <img src={pokemonDetails.sprites.front_default} />
-            <img src={pokemonDetails.sprites.front_shiny} />
+            <img src={pokemonDetails.sprites.back_default} alt="back image" />
+            <img src={pokemonDetails.sprites.back_shiny} alt="back image" />
+            <img src={pokemonDetails.sprites.front_default} alt="front image" />
+            <img src={pokemonDetails.sprites.front_shiny} alt="front image" />
           </div>
         )}
         <div className="pokeMeasurements">
@@ -47,8 +41,12 @@ const PokemonDetails = (props) => {
         <div className="displayBadge">
           <div>
             {pokemonDetails.types &&
-              pokemonDetails.types.map((type) => {
-                return <div className="pokeTypes">{type.type.name}</div>;
+              pokemonDetails.types.map((type, index) => {
+                return (
+                  <div className="pokeTypes" key={index}>
+                    {type.type.name}
+                  </div>
+                );
               })}
           </div>
         </div>
